@@ -127,7 +127,7 @@ function Home() {
                 <option value="">Select Gender</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
-                <option value="other">Other</option>
+                
               </select>
               {error && <p style={{ color: "red", fontSize: "14px" }}>{error}</p>}
               <button className="Btn" onClick={handleGetStarted} style={{ marginTop: "10px" }}>
