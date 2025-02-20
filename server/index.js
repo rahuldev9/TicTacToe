@@ -135,5 +135,5 @@ function checkWinner(roomId) {
 }
 
 server.listen(4000, () => {
-    console.log('Server is running on http://localhost:4000');
+    console.log('Server is running on https://tictactoe-1-7ull.onrender.com/');
 });
