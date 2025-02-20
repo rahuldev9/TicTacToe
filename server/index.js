@@ -6,7 +6,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: 'http://localhost:3000',  // React frontend URL
+        origin: 'https://tic-tac-toe-pearl-three-45.vercel.app',  // React frontend URL
         methods: ['GET', 'POST']
     }
 });
