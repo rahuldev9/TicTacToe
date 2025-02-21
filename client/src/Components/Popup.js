@@ -8,45 +8,50 @@ const Popup = ({ onClose, roomId }) => {
     }
   }, [roomId]);
   
-  const handleShare = (platform, event) => {
-    if (event) event.preventDefault(); // Prevents default behavior if used inside a form
+const handleShare = (platform, event) => {
+  if (event) event.preventDefault(); // Prevents default behavior if used inside a form
 
-    const shareText = `🎉 Let's play Tic-Tac-Toe! 🎮\n\n🚀 Join my game now! Click the Room ID below to copy it and join:\n\n🔢 Room ID: ${roomId}\n\n🔥 Click here to play: ${window.location.href}`;
-    let shareUrl = "";
+  const copyText = `🔢 Room ID: ${roomId}`;
+  const encodedCopyText = encodeURIComponent(copyText);
 
-    switch (platform) {
-      case "whatsapp":
-        shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
-        break;
-      case "twitter":
-        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
-        break;
-      case "telegram":
-        shareUrl = `https://t.me/share/url?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(shareText)}`;
-        break;
-      case "facebook":
-        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`;
-        break;
-      default:
-        // Web Share API fallback (for mobile/modern browsers)
-        if (navigator.share) {
-          navigator
-            .share({
-              title: "Tic-Tac-Toe Room",
-              text: shareText,
-              url: window.location.href,
-            })
-            .catch((err) => console.error("Error sharing:", err));
-        } else {
-          // Fallback to WhatsApp if Web Share API is not available
-          window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`, "_blank");
-        }
-    }
+  const shareText = `🎉 Let's play Tic-Tac-Toe! 🎮\n\n🚀 Join my game now! Click the Room ID below to copy it and join:\n\n👇 **Tap to Copy:**\n🔢 [${roomId}](javascript:navigator.clipboard.writeText('${roomId}').then(()=>alert('Room ID copied!')))\n\n🔥 Click here to play: ${window.location.href}`;
 
-    if (shareUrl) {
-      window.open(shareUrl, "_blank");
-    }
+  let shareUrl = "";
+
+  switch (platform) {
+    case "whatsapp":
+      shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
+      break;
+    case "twitter":
+      shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+      break;
+    case "telegram":
+      shareUrl = `https://t.me/share/url?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(shareText)}`;
+      break;
+    case "facebook":
+      shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`;
+      break;
+    default:
+      // Web Share API fallback (for mobile/modern browsers)
+      if (navigator.share) {
+        navigator
+          .share({
+            title: "Tic-Tac-Toe Room",
+            text: shareText,
+            url: window.location.href,
+          })
+          .catch((err) => console.error("Error sharing:", err));
+      } else {
+        // Fallback to WhatsApp if Web Share API is not available
+        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`, "_blank");
+      }
+  }
+
+  if (shareUrl) {
+    window.open(shareUrl, "_blank");
+  }
 };
+
   // Function to copy the roomId to the clipboard
   const copyRoomId = (event) => {
     navigator.clipboard
