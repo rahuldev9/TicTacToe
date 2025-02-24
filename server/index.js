@@ -47,7 +47,7 @@ io.on('connection', (socket) => {
         } else {
             socket.emit('error', 'Room full or does not exist');
         }
-        console.log(rooms);
+        
     });
     
 
