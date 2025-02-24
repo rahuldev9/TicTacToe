@@ -6,7 +6,7 @@ import Winnerpopup from "./Winnerpopup";
 import { useNavigate } from "react-router-dom";
 import Roomidpopup from "./Roomidpopup";
 
-const socket = io("http://localhost:4000");
+const socket = io("https://tictactoe-1-7ull.onrender.com");
 
 function Start() {
   const [board, setBoard] = useState(Array(9).fill(null));
