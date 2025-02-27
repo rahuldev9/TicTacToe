@@ -14,7 +14,7 @@ const Popup = ({ onClose, roomId }) => {
     const copyText = `🔢 Room ID: ${roomId}`;
     const encodedCopyText = encodeURIComponent(copyText);
   
-    const shareText = `🎉 Let's play Tic-Tac-Toe! 🎮\n\n🚀 Join my game now! Click the Room ID below to copy it and join:\n\n👇 **Tap to Copy:**\n🔢 [${roomId}](javascript:navigator.clipboard.writeText('${roomId}').then(()=>alert('Room ID copied!')))\n\n🔥 Click here to play: ${window.location.href}`;
+    const shareText = `🎉 Let's play Tic-Tac-Toe! 🎮\n\n🚀 Join code is:${roomId}\n\n🔥 Click here to play: ${window.location.href}`;
   
     let shareUrl = "";
   
