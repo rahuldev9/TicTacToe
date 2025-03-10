@@ -10,14 +10,10 @@ const Popup = ({ onClose, roomId }) => {
   
   const handleShare = (platform, event) => {
     if (event) event.preventDefault(); // Prevents default behavior if used inside a form
-  
-    const copyText = `🔢 Room ID: ${roomId}`;
-    const encodedCopyText = encodeURIComponent(copyText);
-  
-    const shareText = `🎉 Let's play Tic-Tac-Toe! 🎮\n\n🚀 Join code is:${roomId}\n\n🔥 Click here to play: ${window.location.href}`;
-  
+
+    const shareText = `🎉 Let's play Tic-Tac-Toe! 🎮\n\n🚀 Join my game now! Click the Room ID below to copy it and join:\n\n🔢 Room ID: ${roomId}\n\n🔥 Click here to play: ${window.location.href}`;
     let shareUrl = "";
-  
+
     switch (platform) {
       case "whatsapp":
         shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
@@ -46,11 +42,11 @@ const Popup = ({ onClose, roomId }) => {
           window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`, "_blank");
         }
     }
-  
+
     if (shareUrl) {
       window.open(shareUrl, "_blank");
     }
-  };
+};
   // Function to copy the roomId to the clipboard
   const copyRoomId = (event) => {
     navigator.clipboard
